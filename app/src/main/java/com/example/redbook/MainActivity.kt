@@ -3,21 +3,32 @@ package com.example.redbook
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.redbook.DataRecycleView.DataFromBase
+import com.example.redbook.DataRecycleView.MainAdapter
+import com.example.redbook.fragment.FragmentWithRecycleView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragement_rv1.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val mAdapter = MainAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, FragmentWithRecycleView())
+                .commit()
+        }
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -45,4 +56,11 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+//    private fun fillData(){
+//        for (i in 1..100){
+//            val name: DataFromBase = DataFromBase("name", "decs", " ")
+//            massiv.add(name)
+//        }
+//        mAdapter.item = massiv
+//    }
 }
