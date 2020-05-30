@@ -14,36 +14,33 @@ data class Animal(
     @ColumnInfo(name = "nameUzb")
     val nameUzb: String,
 
-    @ColumnInfo(name= "nameRus")
+    @ColumnInfo(name = "nameRus")
     val nameRus: String,
 
-    @ColumnInfo(name= "nameEng")
+    @ColumnInfo(name = "nameEng")
     val nameEng: String,
 
-    @ColumnInfo(name="status")
+    @ColumnInfo(name = "status")
     val status: String,
 
-    @ColumnInfo(name ="propagation")
+    @ColumnInfo(name = "propagation")
     val propagation: String,
 
-    @ColumnInfo(name="habitat")
+    @ColumnInfo(name = "habitat")
     val habitat: String,
 
-    @ColumnInfo(name= " quantity")
+    @ColumnInfo(name = "quantity")
     val quantity: String,
 
-    @ColumnInfo(name=" lifestyle")
+    @ColumnInfo(name = "lifestyle")
     val lifestyle: String,
 
-    @ColumnInfo(name=" limitingFactors")
+    @ColumnInfo(name = "limitingFactors")
     val limitingFactors: String,
 
-    @ColumnInfo(name=" breeding")
+    @ColumnInfo(name = "breeding")
     val breeding: String,
 
-    @ColumnInfo(name=" security")
+    @ColumnInfo(name = "security")
     val security: String
-
-
-
     )
