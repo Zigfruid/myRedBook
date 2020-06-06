@@ -8,6 +8,7 @@ import com.example.redbook.DataRecycleView.AnimalAdapter
 import com.example.redbook.R
 import com.example.redbook.data.RedBookDataBase
 import com.example.redbook.data.dao.AnimalDao
+import com.example.redbook.ui.MainActivity
 import kotlinx.android.synthetic.main.fragement_rv1.*
 
 class AnimalFragment : Fragment(R.layout.fragement_rv1) {
@@ -18,11 +19,12 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1) {
         super.onViewCreated(view, savedInstanceState)
         rv1.adapter = mAdapter
         rv1.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        val type = arguments?.getInt(MainActivity.TYPE_ID) ?:1
         dao = RedBookDataBase.getInstance(requireContext()).dao()
-        fillData()
+        fillData(type)
     }
 
-   private fun fillData(){
-        mAdapter.item = dao.getAllAnimals()
+   private fun fillData(type: Int){
+        mAdapter.item = dao.getAllAnimals(type)
     }
 }
