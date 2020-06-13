@@ -10,9 +10,9 @@ import com.example.redbook.data.model.Animal
 
 @Database(entities = [Animal::class], version = 1)
 abstract  class RedBookDataBase : RoomDatabase() {
-
     companion object{
         private lateinit var INSTANCE: RedBookDataBase
+
         fun getInstance(context: Context) : RedBookDataBase =
             Room.databaseBuilder(
                 context,
