@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.redbook.R
 import com.example.redbook.data.model.Animal
 import kotlinx.android.synthetic.main.recycle_item.view.*
@@ -21,7 +22,13 @@ class AnimalAdapter: RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
             itemView.tvRus.text = animal.nameRus
             itemView.tvEng.text = animal.nameEng
             itemView.tvUzb.text = animal.nameUzb
+            val imageResName = "picture${animal.id}"
+            Glide
+                .with(itemView)
+                .load(itemView.context.resources.getIdentifier(imageResName, "drawable", itemView.context.packageName))
+                .into(itemView.iv1)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalViewHolder {
