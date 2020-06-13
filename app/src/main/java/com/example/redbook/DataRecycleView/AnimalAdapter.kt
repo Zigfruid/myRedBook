@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redbook.R
 import com.example.redbook.data.model.Animal
+import com.example.redbook.fragment.AnimalItemClickListener
 import kotlinx.android.synthetic.main.recycle_item.view.*
 
 class AnimalAdapter: RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
