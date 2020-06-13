@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.redbook.R
 import com.example.redbook.data.model.Animal
+import com.example.redbook.fragment.AnimalItemClickListener
 import kotlinx.android.synthetic.main.recycle_item.view.*
 
-class AnimalAdapter: RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
+class AnimalAdapter(private val listener: AnimalItemClickListener): RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
 
     var item: List<Animal> = listOf()
     set(value) {
@@ -25,8 +26,19 @@ class AnimalAdapter: RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
             val imageResName = "picture${animal.id}"
             Glide
                 .with(itemView)
+<<<<<<< HEAD
                 .load(itemView.context.resources.getIdentifier(imageResName, "drawable", itemView.context.packageName))
                 .into(itemView.iv1)
+=======
+                .load(itemView.context.resources
+                .getIdentifier(imageResName, "drawable", itemView.context.packageName))
+                .into(itemView.ivAnimal)
+
+            itemView.setOnClickListener {
+                listener.onAnimalItemClick(animal.id)
+            }
+
+>>>>>>> 0683635480bb1667f4f34911e13f8d52ff69a68b
         }
 
     }
