@@ -1,5 +1,5 @@
 package com.example.redbook.fragment
 
 interface AnimalItemClickListener {
-    fun onAnimalItemClick()
+    fun onAnimalItemClick(id: Int)
 }

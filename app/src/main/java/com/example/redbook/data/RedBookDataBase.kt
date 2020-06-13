@@ -9,7 +9,7 @@ import com.example.redbook.data.model.Animal
 
 
 @Database(entities = [Animal::class], version = 1)
-abstract  class RedBookDataBase : RoomDatabase() {
+abstract  class RedBookDataBase : RoomDatabase(), AnimalDao {
 
     companion object{
         private lateinit var INSTANCE: RedBookDataBase
@@ -25,5 +25,5 @@ abstract  class RedBookDataBase : RoomDatabase() {
     }
 
 
-    abstract fun dao(): AnimalDao
+    //abstract fun dao(): AnimalDao
 }
