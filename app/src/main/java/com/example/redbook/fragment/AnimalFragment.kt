@@ -2,8 +2,9 @@ package com.example.redbook.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
-import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.redbook.DataRecycleView.AnimalAdapter
@@ -25,6 +26,10 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener
         val type = arguments?.getInt(MainActivity.TYPE_ID) ?:1
         dao = RedBookDataBase.getInstance(requireContext()).dao()
         fillData(type)
+        etSearch.addTextChangedListener {
+            val result = dao.getAnimalByName(type, "${it.toString()}%")
+            mAdapter.item = result
+        }
     }
 
    private fun fillData(type: Int){
