@@ -26,10 +26,6 @@ class AnimalAdapter(private val listener: AnimalItemClickListener): RecyclerView
             val imageResName = "picture${animal.id}"
             Glide
                 .with(itemView)
-<<<<<<< HEAD
-                .load(itemView.context.resources.getIdentifier(imageResName, "drawable", itemView.context.packageName))
-                .into(itemView.iv1)
-=======
                 .load(itemView.context.resources
                 .getIdentifier(imageResName, "drawable", itemView.context.packageName))
                 .into(itemView.ivAnimal)
@@ -38,7 +34,6 @@ class AnimalAdapter(private val listener: AnimalItemClickListener): RecyclerView
                 listener.onAnimalItemClick(animal.id)
             }
 
->>>>>>> 0683635480bb1667f4f34911e13f8d52ff69a68b
         }
 
     }
