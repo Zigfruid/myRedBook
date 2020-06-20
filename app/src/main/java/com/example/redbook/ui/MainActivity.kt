@@ -1,8 +1,6 @@
 package com.example.redbook.ui
 
 import android.os.Bundle
-import android.view.Gravity
-import android.view.Menu
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -12,9 +10,7 @@ import com.example.redbook.R
 import com.example.redbook.data.model.Animal
 import com.example.redbook.fragment.AnimalFragment
 import com.example.redbook.fragment.FavoriteAnimal
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         const val REPTILES = 3
         const val BIRDS = 4
         const val MAMMALS = 5
-        const val FAVORITE = 5
     }
     private var models: List<Animal> = arrayListOf()
 
@@ -53,8 +48,9 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             val mFragment = AnimalFragment()
             val mBundle = Bundle()
+
             val fFragment = FavoriteAnimal()
-            val fBundle = Bundle()
+//            val fBundle = Bundle()
 
 
             when(it.itemId){
@@ -89,9 +85,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_favorite -> {
-                    fFragment.arguments = fBundle
-                    fBundle.putInt(TYPE_ID, FISHES)
-                    fFragment.arguments = fBundle
+                    fFragment.arguments = mBundle
                     supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fFragment).commit()
 
                 }
@@ -104,10 +98,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
 
 }

@@ -68,8 +68,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setFavorite(){
-       if(currentAnimal.isFavorite == null) currentAnimal.isFavorite = 1
-        else currentAnimal.isFavorite = 1 - currentAnimal.isFavorite!!
+       if(currentAnimal.isFavorite == null) {
+           currentAnimal.isFavorite = 1
+           Toast.makeText(
+               this,
+               "${currentAnimal.nameRus} было добавлено в Избранные",
+               Toast.LENGTH_SHORT
+           ).show()
+       }else currentAnimal.isFavorite = 1 - currentAnimal.isFavorite!!
         Toast.makeText(this, "${currentAnimal.nameRus} было удалено с Избранных", Toast.LENGTH_SHORT).show()
         setFavoriteIcon()
         dao.updateAnimal(currentAnimal)
@@ -77,7 +83,6 @@ class DetailActivity : AppCompatActivity() {
     private fun setFavoriteIcon(){
         if (currentAnimal.isFavorite == 1){
             menuItem?.setIcon(R.drawable.ic_baseline_bookmark_already)
-            Toast.makeText(this, "${currentAnimal.nameRus} было добавлено в Избранные", Toast.LENGTH_SHORT).show()
         } else {
             menuItem?.setIcon(R.drawable.ic_baseline_bookmark)
 
