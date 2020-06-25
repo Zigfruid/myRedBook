@@ -6,10 +6,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.redbook.DataRecycleView.AnimalAdapter
 import com.example.redbook.R
 import com.example.redbook.data.RedBookDataBase
 import com.example.redbook.data.dao.AnimalDao
 import com.example.redbook.data.model.Animal
+import com.example.redbook.fragment.AnimalItemClickListener
+import com.example.redbook.fragment.FavoriteAnimal
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.recycle_item.view.*
 
@@ -67,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setFavorite(){
+     private fun setFavorite(){
        if(currentAnimal.isFavorite == null) {
            currentAnimal.isFavorite = 1
            Toast.makeText(
@@ -77,8 +80,9 @@ class DetailActivity : AppCompatActivity() {
            ).show()
        }else currentAnimal.isFavorite = 1 - currentAnimal.isFavorite!!
         Toast.makeText(this, "${currentAnimal.nameRus} было удалено с Избранных", Toast.LENGTH_SHORT).show()
-        setFavoriteIcon()
+         setFavoriteIcon()
         dao.updateAnimal(currentAnimal)
+
     }
     private fun setFavoriteIcon(){
         if (currentAnimal.isFavorite == 1){
@@ -89,4 +93,6 @@ class DetailActivity : AppCompatActivity() {
 
         }
     }
+
+
 }

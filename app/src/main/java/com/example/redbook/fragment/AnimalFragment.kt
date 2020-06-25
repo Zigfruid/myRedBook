@@ -12,7 +12,6 @@ import com.example.redbook.data.RedBookDataBase
 import com.example.redbook.data.dao.AnimalDao
 import com.example.redbook.ui.MainActivity
 import com.example.redbook.ui.detail.DetailActivity
-import kotlinx.android.synthetic.main.favorite_rv2.*
 import kotlinx.android.synthetic.main.fragement_rv1.*
 
 class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener{
@@ -28,11 +27,13 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener
         fillData(type)
         etSearch.addTextChangedListener {
             val result = dao.getAnimalByName(type, "${it.toString()}%")
-            mAdapter.item = result
+                mAdapter.item = result
+
+
         }
     }
 
-   private fun fillData(type: Int){
+    private fun fillData(type: Int){
         mAdapter.item = dao.getAllAnimals(type)
     }
 
@@ -40,5 +41,6 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener
         val mIntent = Intent(requireActivity(), DetailActivity::class.java)
         mIntent.putExtra(DetailActivity.ANIMAL_ID, id)
         startActivity(mIntent)
+
     }
 }

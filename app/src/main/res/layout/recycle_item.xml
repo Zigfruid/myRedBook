@@ -13,7 +13,7 @@
             android:layout_width="100dp"
             android:layout_height="56dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
+
             />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvRus"
@@ -21,8 +21,7 @@
             app:layout_constraintTop_toTopOf="@id/ivAnimal"
             app:layout_constraintStart_toEndOf="@id/ivAnimal"
             android:layout_marginStart="16dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:paddingEnd="8dp"
             android:textColor="@color/colorPrimaryDark"
             android:text="Name of this animal"
             android:layout_height="wrap_content"/>
@@ -30,6 +29,7 @@
         android:id="@+id/tvUzb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingEnd="8dp"
         app:layout_constraintTop_toBottomOf="@id/tvRus"
         app:layout_constraintStart_toStartOf="@id/tvRus"
         android:text="Description About our animal"/>
@@ -38,6 +38,7 @@
         android:id="@+id/tvEng"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingEnd="8dp"
         app:layout_constraintTop_toBottomOf="@id/tvUzb"
         app:layout_constraintStart_toStartOf="@id/tvRus"
         android:text="Description About our animal"/>

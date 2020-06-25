@@ -13,10 +13,12 @@ import kotlinx.android.synthetic.main.recycle_item.view.*
 class AnimalAdapter(private val listener: AnimalItemClickListener): RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
 
     var item: List<Animal> = listOf()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+
 
     inner class AnimalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun popMod(animal: Animal){

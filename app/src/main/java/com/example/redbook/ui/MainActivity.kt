@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             val mBundle = Bundle()
 
             val fFragment = FavoriteAnimal()
-//            val fBundle = Bundle()
+
 
 
             when(it.itemId){
