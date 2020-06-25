@@ -14,12 +14,12 @@
         app:layout_constraintStart_toStartOf="parent"
         android:drawableStart="@drawable/ic_search_white"
         android:background="@drawable/search_background"
-        android:hint="Search"
+        android:hint="Izlew"
         android:layout_marginStart="@dimen/margin_standard"
         android:layout_marginTop="@dimen/margin_standard"
         android:layout_marginEnd="@dimen/margin_standard"
         android:layout_marginBottom="@dimen/margin_standard"
-        android:padding="8dp"
+        android:padding="10dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView

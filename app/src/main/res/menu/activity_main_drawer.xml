@@ -20,4 +20,10 @@
             android:id="@+id/nav_mammals"
             android:title="@string/mammals" />
     </group>
+
+    <group android:id="@+id/group_divider" >
+        <item
+            android:id="@+id/nav_favorite"
+            android:title="@string/favorite"/>
+    </group>
 </menu>

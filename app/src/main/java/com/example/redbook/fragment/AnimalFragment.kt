@@ -2,7 +2,6 @@ package com.example.redbook.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -28,11 +27,13 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener
         fillData(type)
         etSearch.addTextChangedListener {
             val result = dao.getAnimalByName(type, "${it.toString()}%")
-            mAdapter.item = result
+                mAdapter.item = result
+
+
         }
     }
 
-   private fun fillData(type: Int){
+    private fun fillData(type: Int){
         mAdapter.item = dao.getAllAnimals(type)
     }
 
@@ -40,5 +41,6 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener
         val mIntent = Intent(requireActivity(), DetailActivity::class.java)
         mIntent.putExtra(DetailActivity.ANIMAL_ID, id)
         startActivity(mIntent)
+
     }
 }

@@ -42,5 +42,8 @@ data class Animal(
     val breeding: String,
 
     @ColumnInfo(name = "security")
-    val security: String
+    val security: String,
+
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Int? = 0
     )

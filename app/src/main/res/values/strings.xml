@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Red Book</string>
+    <string name="app_name">Qizil kitap</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -14,4 +14,6 @@
     <string name="home_second">Home Second</string>
     <string name="invertebrates">Omirtqaszilar</string>
     <string name="mammals">Sutemizushiler</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="favorite">Saylandilar</string>
 </resources>
