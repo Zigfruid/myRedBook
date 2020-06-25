@@ -10,13 +10,15 @@ import com.example.redbook.DataRecycleView.AnimalAdapter
 import com.example.redbook.R
 import com.example.redbook.data.RedBookDataBase
 import com.example.redbook.data.dao.AnimalDao
+import com.example.redbook.data.model.Animal
 import com.example.redbook.ui.MainActivity
 import com.example.redbook.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragement_rv1.*
 
-class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener{
+class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener, AnimalView{
     private val mAdapter = AnimalAdapter(this)
     private lateinit var dao: AnimalDao
+    private lateinit var presenter: AnimalPresenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,17 +26,16 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener
         rv1.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         val type = arguments?.getInt(MainActivity.TYPE_ID) ?:1
         dao = RedBookDataBase.getInstance(requireContext()).dao()
-        fillData(type)
+        presenter = AnimalPresenter(dao, this)
+        presenter.getAllAnimals(type)
+
         etSearch.addTextChangedListener {
             val result = dao.getAnimalByName(type, "${it.toString()}%")
                 mAdapter.item = result
-
-
         }
     }
-
-    private fun fillData(type: Int){
-        mAdapter.item = dao.getAllAnimals(type)
+    override fun setData(models: List<Animal>){
+        mAdapter.item = models
     }
 
     override fun onAnimalItemClick(id: Int) {

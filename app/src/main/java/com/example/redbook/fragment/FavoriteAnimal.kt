@@ -10,14 +10,16 @@ import com.example.redbook.DataRecycleView.AnimalAdapter
 import com.example.redbook.R
 import com.example.redbook.data.RedBookDataBase
 import com.example.redbook.data.dao.AnimalDao
+import com.example.redbook.data.model.Animal
 import com.example.redbook.ui.MainActivity
 import com.example.redbook.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.favorite_rv2.*
 import kotlin.reflect.typeOf
 
-class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener {
+class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener, AnimalView {
     private val favAdapter = AnimalAdapter(this)
     private lateinit var animalDao: AnimalDao
+    private lateinit var presenter: AnimalPresenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,12 +27,12 @@ class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener
         fav_rv2.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         fav_rv2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         animalDao = RedBookDataBase.getInstance(requireContext()).dao()
-        onStart()
 
     }
 
     override fun onStart() {
-        fillData()
+        presenter = AnimalPresenter(animalDao, this)
+        presenter.getAnimalsFromFav()
         if (favAdapter.item.isEmpty()){
             fav_rv2.visibility = View.GONE
             tvPusto.visibility = View.VISIBLE
@@ -43,9 +45,6 @@ class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener
         super.onStart()
     }
 
-    private fun fillData(){
-        favAdapter.item = animalDao.getAnimalsFromFav()
-    }
 
 
 
@@ -55,6 +54,9 @@ class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener
         startActivity(mIntent)
     }
 
+    override fun setData(models: List<Animal>) {
+        favAdapter.item = models
+    }
 
 
 }
