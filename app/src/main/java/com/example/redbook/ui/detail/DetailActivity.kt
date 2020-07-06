@@ -6,15 +6,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.redbook.DataRecycleView.AnimalAdapter
 import com.example.redbook.R
 import com.example.redbook.data.RedBookDataBase
 import com.example.redbook.data.dao.AnimalDao
 import com.example.redbook.data.model.Animal
-import com.example.redbook.fragment.AnimalItemClickListener
-import com.example.redbook.fragment.FavoriteAnimal
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.recycle_item.view.*
 
 class DetailActivity : AppCompatActivity() {
 

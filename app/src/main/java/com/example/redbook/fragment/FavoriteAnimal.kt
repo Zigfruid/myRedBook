@@ -16,8 +16,8 @@ import com.example.redbook.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.favorite_rv2.*
 import kotlin.reflect.typeOf
 
-class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener, AnimalView {
-    private val favAdapter = AnimalAdapter(this)
+class FavoriteAnimal : Fragment(R.layout.favorite_rv2), AnimalView {
+    private val favAdapter = AnimalAdapter()
     private lateinit var animalDao: AnimalDao
     private lateinit var presenter: AnimalPresenter
 
@@ -27,6 +27,11 @@ class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener
         fav_rv2.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         fav_rv2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         animalDao = RedBookDataBase.getInstance(requireContext()).dao()
+        favAdapter.setOnItemClickListener {
+            val mIntent = Intent(requireActivity(), DetailActivity::class.java)
+            mIntent.putExtra(DetailActivity.ANIMAL_ID, id)
+            startActivity(mIntent)
+        }
 
     }
 
@@ -43,15 +48,6 @@ class FavoriteAnimal : Fragment(R.layout.favorite_rv2) , AnimalItemClickListener
             ivIconVisible.visibility = View.GONE
         }
         super.onStart()
-    }
-
-
-
-
-    override fun onAnimalItemClick(id: Int) {
-        val mIntent = Intent(requireActivity(), DetailActivity::class.java)
-        mIntent.putExtra(DetailActivity.ANIMAL_ID, id)
-        startActivity(mIntent)
     }
 
     override fun setData(models: List<Animal>) {

@@ -15,8 +15,8 @@ import com.example.redbook.ui.MainActivity
 import com.example.redbook.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragement_rv1.*
 
-class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener, AnimalView{
-    private val mAdapter = AnimalAdapter(this)
+class AnimalFragment : Fragment(R.layout.fragement_rv1){
+    private val mAdapter = AnimalAdapter()
     private lateinit var dao: AnimalDao
     private lateinit var presenter: AnimalPresenter
 
@@ -26,22 +26,21 @@ class AnimalFragment : Fragment(R.layout.fragement_rv1), AnimalItemClickListener
         rv1.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         val type = arguments?.getInt(MainActivity.TYPE_ID) ?:1
         dao = RedBookDataBase.getInstance(requireContext()).dao()
-        presenter = AnimalPresenter(dao, this)
+        presenter = AnimalPresenter(dao)
+        presenter.setFunctionBody {
+            mAdapter.item = it
+        }
         presenter.getAllAnimals(type)
-
-        etSearch.addTextChangedListener {
+        mAdapter.setOnItemClickListener {
+            val mIntent = Intent(requireActivity(), DetailActivity::class.java)
+            mIntent.putExtra(DetailActivity.ANIMAL_ID, it)
+            startActivity(mIntent)
+        }
+        //search
+         etSearch.addTextChangedListener {
             val result = dao.getAnimalByName(type, "${it.toString()}%")
                 mAdapter.item = result
         }
     }
-    override fun setData(models: List<Animal>){
-        mAdapter.item = models
-    }
 
-    override fun onAnimalItemClick(id: Int) {
-        val mIntent = Intent(requireActivity(), DetailActivity::class.java)
-        mIntent.putExtra(DetailActivity.ANIMAL_ID, id)
-        startActivity(mIntent)
-
-    }
 }

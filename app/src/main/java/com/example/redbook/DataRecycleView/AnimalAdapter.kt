@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.redbook.R
 import com.example.redbook.data.model.Animal
-import com.example.redbook.fragment.AnimalItemClickListener
 import kotlinx.android.synthetic.main.recycle_item.view.*
 
-class AnimalAdapter(private val listener: AnimalItemClickListener): RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
+class AnimalAdapter: RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
 
     var item: List<Animal> = listOf()
         set(value) {
@@ -18,7 +17,11 @@ class AnimalAdapter(private val listener: AnimalItemClickListener): RecyclerView
             notifyDataSetChanged()
         }
 
+    private var animalItemOnClick: (animalId: Int) -> Unit = { animalId ->  }
 
+    fun setOnItemClickListener(animalItemOnClick : (animalId: Int) -> Unit){
+        this.animalItemOnClick = animalItemOnClick
+    }
 
     inner class AnimalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun popMod(animal: Animal){
@@ -33,7 +36,7 @@ class AnimalAdapter(private val listener: AnimalItemClickListener): RecyclerView
                 .into(itemView.ivAnimal)
 
             itemView.setOnClickListener {
-                listener.onAnimalItemClick(animal.id)
+                animalItemOnClick.invoke(animal.id)
             }
 
         }
