@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity() {
 
             val fFragment = FavoriteAnimal()
 
-
-
             when(it.itemId){
 
                 R.id.nav_invertebrates -> {
